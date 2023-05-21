@@ -2,8 +2,6 @@ import java.util.List;
 import java.util.ArrayList;
 public class BST<K extends Comparable<K>, V> {
     private Node root;
-
-    // Node class representing a node in the binary search tree
     private class Node {
         private K key;
         private V val;
@@ -91,9 +89,9 @@ public class BST<K extends Comparable<K>, V> {
     private void inorderTraversal(Node node, List<K> keys) {
         if (node == null)
             return;
-        inorderTraversal(node.left, keys); // Traverse left subtree
-        keys.add(node.key); // Add current node's key to the list
-        inorderTraversal(node.right, keys); // Traverse right subtree
+        inorderTraversal(node.left, keys);
+        keys.add(node.key);
+        inorderTraversal(node.right, keys);
     }
     public int size() {
         return size(root);
