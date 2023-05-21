@@ -34,12 +34,10 @@ public class BST<K extends Comparable<K>, V> {
         }
         return node;
     }
-
     public V get(K key) {
         Node node = get(root, key);
         return node != null ? node.val : null;
     }
-
     private Node get(Node node, K key) {
         if (node == null) {
             return null;
@@ -53,11 +51,9 @@ public class BST<K extends Comparable<K>, V> {
             return node;
         }
     }
-
     public void delete(K key) {
         root = delete(root, key);
     }
-
     private Node delete(Node node, K key) {
         if (node == null) {
             return null;
@@ -80,5 +76,33 @@ public class BST<K extends Comparable<K>, V> {
             }
         }
         return node;
+    }
+    public Node findMin(Node node) {
+        while (node.left != null) {
+            node = node.left;
+        }
+        return node;
+    }
+    public Iterable<K> iterator() {
+        List<K> keys = new ArrayList<>();
+        inorderTraversal(root, keys);
+        return keys;
+    }
+    private void inorderTraversal(Node node, List<K> keys) {
+        if (node == null)
+            return;
+        inorderTraversal(node.left, keys); // Traverse left subtree
+        keys.add(node.key); // Add current node's key to the list
+        inorderTraversal(node.right, keys); // Traverse right subtree
+    }
+    public int size() {
+        return size(root);
+    }
+    private int size(Node node) {
+        if (node == null) {
+            return 0;
+        } else {
+            return 1 + size(node.left) + size(node.right);
+        }
     }
 }
