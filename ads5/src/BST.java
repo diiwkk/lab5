@@ -2,6 +2,7 @@ import java.util.List;
 import java.util.ArrayList;
 public class BST<K extends Comparable<K>, V> {
     private Node root;
+
     private class Node {
         private K key;
         private V val;
@@ -21,7 +22,6 @@ public class BST<K extends Comparable<K>, V> {
         if (node == null) {
             return new Node(key, val);
         }
-
         int cmp = key.compareTo(node.key);
         if (cmp < 0) {
             node.left = put(node.left, key, val);
@@ -32,10 +32,12 @@ public class BST<K extends Comparable<K>, V> {
         }
         return node;
     }
+
     public V get(K key) {
         Node node = get(root, key);
         return node != null ? node.val : null;
     }
+
     private Node get(Node node, K key) {
         if (node == null) {
             return null;
@@ -49,9 +51,11 @@ public class BST<K extends Comparable<K>, V> {
             return node;
         }
     }
+
     public void delete(K key) {
         root = delete(root, key);
     }
+
     private Node delete(Node node, K key) {
         if (node == null) {
             return null;
@@ -75,17 +79,20 @@ public class BST<K extends Comparable<K>, V> {
         }
         return node;
     }
+
     public Node findMin(Node node) {
         while (node.left != null) {
             node = node.left;
         }
         return node;
     }
+
     public Iterable<K> iterator() {
         List<K> keys = new ArrayList<>();
         inorderTraversal(root, keys);
         return keys;
     }
+
     private void inorderTraversal(Node node, List<K> keys) {
         if (node == null)
             return;
@@ -93,14 +100,29 @@ public class BST<K extends Comparable<K>, V> {
         keys.add(node.key);
         inorderTraversal(node.right, keys);
     }
+
     public int size() {
         return size(root);
     }
+
     private int size(Node node) {
         if (node == null) {
             return 0;
         } else {
             return 1 + size(node.left) + size(node.right);
         }
+    }
+
+    public int getHeight() {
+        return getHeight(root);
+    }
+
+    private int getHeight(Node node) {
+        if (node == null)
+            return 0;
+        else {
+            int leftHeight = getHeight(node.left);
+        }
+        return 0;
     }
 }
